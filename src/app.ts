@@ -1,17 +1,23 @@
-import cors from 'cors'
 import express, { Application, Request, Response } from 'express'
+import cors from 'cors'
+import userRouter from './app/modules/users/users.routes'
 const app: Application = express()
-
-// Application routes
 
 // using cors
 app.use(cors())
+
+//parser
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+// Application routes
+app.use('/api/v1/users/', userRouter)
 
 // parse data
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
   res.send('University Management Authentication Server Running')
 })
 
