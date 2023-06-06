@@ -1,25 +1,25 @@
 {
-    "keep": {
-        "days": true,
-        "amount": 14
+  "keep": {
+    "days": true,
+    "amount": 14
+  },
+  "auditLog": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\.63c7b3d1a635b875e01250e551e785d10efe7f47-audit.json",
+  "files": [
+    {
+      "date": 1686067483774,
+      "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\phu-2023-06-06-22-success.log",
+      "hash": "43e3b1ebe2cdc8ea45f5f67a150987d3ec061927bd8a907eff1d220bbcab55aa"
     },
-    "auditLog": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\.63c7b3d1a635b875e01250e551e785d10efe7f47-audit.json",
-    "files": [
-        {
-            "date": 1686067483774,
-            "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\phu-2023-06-06-22-success.log",
-            "hash": "43e3b1ebe2cdc8ea45f5f67a150987d3ec061927bd8a907eff1d220bbcab55aa"
-        },
-        {
-            "date": 1686071557213,
-            "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\phu-2023-06-06-23-success.log",
-            "hash": "12481223e53a663d150b12d74a331e1df256855640ab2d8837a1cfbde823b250"
-        },
-        {
-            "date": 1686074439808,
-            "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\phu-2023-07-06-00-success.log",
-            "hash": "9af2319359296324235fb208445a0f215673f488d8548e18630f558942de00d1"
-        }
-    ],
-    "hashType": "sha256"
+    {
+      "date": 1686071557213,
+      "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\phu-2023-06-06-23-success.log",
+      "hash": "12481223e53a663d150b12d74a331e1df256855640ab2d8837a1cfbde823b250"
+    },
+    {
+      "date": 1686074439808,
+      "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\successes\\phu-2023-07-06-00-success.log",
+      "hash": "9af2319359296324235fb208445a0f215673f488d8548e18630f558942de00d1"
+    }
+  ],
+  "hashType": "sha256"
 }
