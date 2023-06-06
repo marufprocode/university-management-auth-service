@@ -20,7 +20,4 @@ const errorLogger = createLogger({
   transports: [errorTransport, consoleTransport],
 });
 
-export {
-    infoLogger,
-    errorLogger
-};
+export { infoLogger, errorLogger };
