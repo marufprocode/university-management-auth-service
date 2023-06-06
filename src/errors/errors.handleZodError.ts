@@ -8,9 +8,8 @@ const handleZodError = (error: ZodError): IGenericErrorResponse => {
       message: issue?.message,
     };
   });
-  const statusCode = 400;
   return {
-    statusCode,
+    statusCode: 400,
     message: 'Validation Error',
     errorMessages: errors,
   };

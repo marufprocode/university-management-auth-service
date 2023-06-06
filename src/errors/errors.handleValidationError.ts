@@ -10,9 +10,8 @@ const handleValidationError = (error: mongoose.Error.ValidationError): IGenericE
       };
     }
   );
-  const statusCode = 400;
   return {
-    statusCode,
+    statusCode: 400,
     message: 'Validation Error',
     errorMessages: errors,
   };

@@ -10,12 +10,15 @@ import handleValidationError from '../../errors/errors.handleValidationError';
 import handleZodError from '../../errors/errors.handleZodError';
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
+  // check if the error happened before in the console or logs the error
   config.env === 'development'
     ? console.error(`⛔ globalErrorHandler ~~`, error)
     : errorLogger.error(`⛔ globalErrorHandler ~~`, error);
+
   let statusCode = 500;
   let message = 'Internal Server Error!';
   let errorMessages: IGenericErrorMessage[] = [];
+
   if (error?.name === 'ValidationError') {
     const simplifiedError = handleValidationError(error);
     statusCode = simplifiedError.statusCode;
