@@ -12,7 +12,7 @@
     // // to enforce using type for object type definitions, can be type or interface
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     "no-unused-vars": "error",
-    // "no-console": "error",
+    // "no-console": "warn",
     "no-undefined": "error",
     "no-unused-expressions": "error",
     "no-unreachable": "error"
