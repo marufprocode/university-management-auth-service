@@ -1,5 +1,6 @@
 import { ZodError, ZodIssue } from 'zod';
 import { IGenericErrorMessage, IGenericErrorResponse } from './errors.interfaces';
+import httpStatus from 'http-status';
 
 const handleZodError = (error: ZodError): IGenericErrorResponse => {
   const errors: IGenericErrorMessage[] = error.issues.map((issue: ZodIssue) => {
@@ -9,7 +10,7 @@ const handleZodError = (error: ZodError): IGenericErrorResponse => {
     };
   });
   return {
-    statusCode: 400,
+    statusCode: httpStatus.BAD_REQUEST,
     message: 'Validation Error',
     errorMessages: errors,
   };

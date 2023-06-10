@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { IGenericErrorMessage, IGenericErrorResponse } from './errors.interfaces';
+import httpStatus from 'http-status';
 
 const handleValidationError = (error: mongoose.Error.ValidationError): IGenericErrorResponse => {
   const errors: IGenericErrorMessage[] = Object.values(error.errors).map(
@@ -11,7 +12,7 @@ const handleValidationError = (error: mongoose.Error.ValidationError): IGenericE
     }
   );
   return {
-    statusCode: 400,
+    statusCode: httpStatus.BAD_REQUEST,
     message: 'Validation Error',
     errorMessages: errors,
   };

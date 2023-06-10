@@ -1,11 +1,11 @@
 import { RequestHandler } from 'express';
-import usersService from './users.service';
+import semesterService from './semester.service';
 import catchAsync from '../../../shared/HOF/catchAsync';
 import httpStatus from 'http-status';
 
-const createUser: RequestHandler = catchAsync(async (req, res) => {
-  const { user } = req.body;
-  const result = await usersService.createUserToDB(user);
+const createSemester: RequestHandler = catchAsync(async (req, res) => {
+  const semester = req.body;
+  const result = await semesterService.createSemesterToDB(semester);
   res.status(httpStatus.CREATED).json({
     success: true,
     message: 'User created successfully',
@@ -13,4 +13,4 @@ const createUser: RequestHandler = catchAsync(async (req, res) => {
   });
 });
 
-export default { createUser };
+export default { createSemester };
