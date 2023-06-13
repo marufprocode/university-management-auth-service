@@ -17,6 +17,34 @@ const createAcadSemesterZodSchema = z.object({
   }),
 });
 
+const validateSemesterQuerySchema = z
+  .object({
+    query: z
+      .object({
+        page: z
+          .string()
+          .refine(val => (isNaN(Number(val)) || !Number.isInteger(Number(val)) ? false : true), {
+            message: 'invalid page query',
+          })
+          .optional(),
+        limit: z
+          .string()
+          .refine(val => (isNaN(Number(val)) || !Number.isInteger(Number(val)) ? false : true), {
+            message: 'invalid limit query',
+          })
+          .optional(),
+        sortBy: z.enum(['asc', 'desc']).optional(),
+        sortOrder: z.enum(['asc', 'desc']).optional(),
+      })
+      .catchall(
+        z.unknown().refine(() => false, {
+          message: 'Invalid query parameter',
+        })
+      ),
+  })
+  .nonstrict();
+
 export default {
   createAcadSemesterZodSchema,
+  validateSemesterQuerySchema,
 };
