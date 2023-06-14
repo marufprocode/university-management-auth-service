@@ -38,5 +38,4 @@ export interface ISemesterSearchAndFilters{
 export interface ISemesterSearchableFields{
   title?:string;
   code?:string;
-  year?:string;
 }
