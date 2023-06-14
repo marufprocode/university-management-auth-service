@@ -28,10 +28,9 @@ export interface IAcademicSemester extends Document {
 
 export type AcademicSemesterModel = Model<IAcademicSemester>;
 
-
-export interface ISemesterSearchAndFilters{
-  search?:string;
-  title?:string;
-  code?:string;
-  year?:string;
+export interface ISemesterSearchAndFilters {
+  search?: string;
+  title?: string;
+  code?: string;
+  year?: string;
 }

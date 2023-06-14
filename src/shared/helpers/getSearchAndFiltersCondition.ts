@@ -8,7 +8,7 @@ interface returnType {
 }
 
 export const getSearchAndFiltersCondition = (
-  options: {[Type: string]: string},
+  options: { [Type: string]: string },
   searchableFields: string[]
 ): returnType => {
   const { search, ...filters } = options;

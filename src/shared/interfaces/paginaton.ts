@@ -1,10 +1,10 @@
-import { SortOrder } from "mongoose";
+import { SortOrder } from 'mongoose';
 
 export interface IPaginationOptions {
   page: number;
   limit: number;
   skip: number;
-  sort: { [key: string]: SortOrder }
+  sort: { [key: string]: SortOrder };
 }
 
 export interface IPaginationResponse<T> {
@@ -12,7 +12,7 @@ export interface IPaginationResponse<T> {
     limit: number;
     page: number;
     total: number;
-    sort: { [key: string]: SortOrder }
+    sort: { [key: string]: SortOrder };
   };
   data: T;
 }
