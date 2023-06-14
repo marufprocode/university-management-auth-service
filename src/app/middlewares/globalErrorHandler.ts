@@ -8,6 +8,7 @@ import { Error } from 'mongoose';
 import ApiError from '../../errors/errors.apiError';
 import handleValidationError from '../../errors/errors.handleValidationError';
 import handleZodError from '../../errors/errors.handleZodError';
+import handleCastError from '../../errors/errors.handleCastError';
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   // check if the error happened before in the console or logs the error
@@ -26,6 +27,11 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages = simplifiedError.errorMessages;
   } else if (error instanceof ZodError) {
     const simplifiedError = handleZodError(error);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorMessages = simplifiedError.errorMessages;
+  } else if (error?.name === 'CastError') {
+    const simplifiedError = handleCastError(error);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;

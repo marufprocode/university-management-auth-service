@@ -46,6 +46,17 @@ academicSemesterSchema.pre('save', async function (next) {
   next();
 });
 
+academicSemesterSchema.pre('findOneAndRemove', async function (next) {
+  const document = await this.model.findOne(this.getQuery());
+
+  if (!document) {
+    return next(new ApiError(409, `Academic semester not found`));
+  }
+
+  // Perform additional cleanup or execute specific actions before removing the document
+  next();
+});
+
 export const AcademicSemester = model<IAcademicSemester, AcademicSemesterModel>(
   'Semester',
   academicSemesterSchema

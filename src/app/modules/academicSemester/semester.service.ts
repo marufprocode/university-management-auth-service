@@ -1,3 +1,4 @@
+import httpStatus from 'http-status';
 import ApiError from '../../../errors/errors.apiError';
 import { getSearchAndFiltersCondition } from '../../../shared/helpers/getSearchAndFiltersCondition';
 import { IPaginationOptions, IPaginationResponse } from '../../../shared/interfaces/paginaton';
@@ -9,11 +10,11 @@ type returnType = Promise<IAcademicSemester | null>;
 
 const createSemesterToDB = async (payload: IAcademicSemester): returnType => {
   if (semestercodesMapper[payload.title] !== payload.code) {
-    throw new ApiError(400, 'Semester code does not match');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Semester code does not match');
   }
   const result = await AcademicSemester.create(payload);
   if (!result) {
-    throw new ApiError(400, 'Failed to create Semester');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create Semester');
   }
   return result;
 };
@@ -39,5 +40,30 @@ const getAllSemesterFromDB = async (
     data: result,
   };
 };
+const getSingleSemesterFromDB = async (id: string): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findById(id);
+  return result;
+};
 
-export default { createSemesterToDB, getAllSemesterFromDB };
+const updateSemesterToDB = async (
+  id: string,
+  data: Partial<IAcademicSemester>
+): Promise<IAcademicSemester | null> => {
+  if (data.title && data.code && semestercodesMapper[data.title] !== data.code) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code');
+  }
+  const result = await AcademicSemester.findByIdAndUpdate(id, data, { new: true });
+  return result;
+};
+const deleteSemester = async (id: string): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findByIdAndRemove(id);
+  return result;
+};
+
+export default {
+  createSemesterToDB,
+  getAllSemesterFromDB,
+  getSingleSemesterFromDB,
+  updateSemesterToDB,
+  deleteSemester,
+};

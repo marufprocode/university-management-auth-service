@@ -13,7 +13,15 @@ router.post(
 
 router.get(
   '/semesters',
+  validateRequestZod(semesterValidation.validateSemesterQuerySchema),
   semesterController.getAllSemester
 );
+router.get('/semesters/:id', semesterController.getSingleSemester);
+router.patch(
+  '/semesters/:id',
+  validateRequestZod(semesterValidation.updateAcadSemesterZodSchema),
+  semesterController.updateSemester
+);
+router.delete('/semesters/:id', semesterController.deleteSemester);
 
 export default router;
