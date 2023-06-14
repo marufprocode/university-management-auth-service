@@ -13,7 +13,6 @@ router.post(
 
 router.get(
   '/semesters',
-  validateRequestZod(semesterValidation.validateSemesterQuerySchema),
   semesterController.getAllSemester
 );
 

@@ -1,10 +1,8 @@
 import ApiError from '../../../errors/errors.apiError';
-import {
-  IPaginationOptionsResult,
-  IPaginationResponse,
-} from '../../../shared/interfaces/paginaton';
-import { semestercodesMapper } from './semester.constants';
-import { IAcademicSemester } from './semester.interface';
+import { getSearchAndFiltersCondition } from '../../../shared/helpers/getSearchAndFiltersCondition';
+import { IPaginationOptions, IPaginationResponse } from '../../../shared/interfaces/paginaton';
+import { semesterSearchableFields, semestercodesMapper } from './semester.constants';
+import { IAcademicSemester, ISemesterSearchAndFilters } from './semester.interface';
 import { AcademicSemester } from './semester.model';
 
 type returnType = Promise<IAcademicSemester | null>;
@@ -21,16 +19,22 @@ const createSemesterToDB = async (payload: IAcademicSemester): returnType => {
 };
 
 const getAllSemesterFromDB = async (
-  paginationOpt: IPaginationOptionsResult
+  searchAndFilters: ISemesterSearchAndFilters,
+  paginationOpt: IPaginationOptions
 ): Promise<IPaginationResponse<IAcademicSemester[]>> => {
-  const { page, limit, skip } = paginationOpt;
-  const result = await AcademicSemester.find().skip(skip).limit(limit);
+  const { page, limit, skip, sort } = paginationOpt;
+  const conditions = getSearchAndFiltersCondition(
+    searchAndFilters as Record<string, string>,
+    semesterSearchableFields
+  );
+  const result = await AcademicSemester.find(conditions).sort(sort).skip(skip).limit(limit);
   const total = await AcademicSemester.countDocuments();
   return {
     meta: {
       page,
       limit,
       total,
+      sort,
     },
     data: result,
   };

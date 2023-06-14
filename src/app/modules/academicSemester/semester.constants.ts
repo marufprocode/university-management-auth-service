@@ -28,3 +28,14 @@ export const semestercodesMapper: { [key: string]: string } = {
   Summer: '02',
   Fall: '03',
 };
+
+export const semesterSearchAndFiltersleFields = [
+  'search',
+  'title',
+  'code',
+  'year',
+];
+export const semesterSearchableFields = [
+  'title',
+  'code',
+];

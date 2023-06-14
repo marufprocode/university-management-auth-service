@@ -7,6 +7,7 @@ import { paginationFields } from '../../../shared/constants/pagination.constants
 import sendResponse from '../../../shared/utilities/sendResponse';
 import { IAcademicSemester } from './semester.interface';
 import { calculatePagination } from '../../../shared/helpers/paginationHelper';
+import { semesterSearchAndFiltersleFields } from './semester.constants';
 
 const createSemester = catchAsync(async (req: Request, res: Response) => {
   const semester = req.body;
@@ -26,8 +27,9 @@ const createSemester = catchAsync(async (req: Request, res: Response) => {
 
 const getAllSemester = catchAsync(async (req: Request, res: Response) => {
   const paginationOptions = pickKeys(req.query, paginationFields);
-  const options = calculatePagination(paginationOptions);
-  const { meta, data } = await semesterService.getAllSemesterFromDB(options);
+  const formattedPaginationOptions = calculatePagination(paginationOptions);
+  const searchAndFilters = pickKeys(req.query, semesterSearchAndFiltersleFields);
+  const { meta, data } = await semesterService.getAllSemesterFromDB(searchAndFilters, formattedPaginationOptions);
   sendResponse<IAcademicSemester[]>(res, {
     statusCode: httpStatus.OK,
     success: true,

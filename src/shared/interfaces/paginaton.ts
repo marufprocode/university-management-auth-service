@@ -1,16 +1,10 @@
-export interface IPaginationOptions {
-  page?: number;
-  limit?: number;
-  sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
-}
+import { SortOrder } from "mongoose";
 
-export interface IPaginationOptionsResult {
+export interface IPaginationOptions {
   page: number;
   limit: number;
   skip: number;
-  sortBy: string;
-  sortOrder: 'asc' | 'desc';
+  sort: { [key: string]: SortOrder }
 }
 
 export interface IPaginationResponse<T> {
@@ -18,6 +12,7 @@ export interface IPaginationResponse<T> {
     limit: number;
     page: number;
     total: number;
+    sort: { [key: string]: SortOrder }
   };
   data: T;
 }
