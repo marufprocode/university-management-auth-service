@@ -9,6 +9,7 @@ import ApiError from '../../errors/errors.apiError';
 import handleValidationError from '../../errors/errors.handleValidationError';
 import handleZodError from '../../errors/errors.handleZodError';
 import handleCastError from '../../errors/errors.handleCastError';
+import httpStatus from 'http-status';
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   // check if the error happened before in the console or logs the error
@@ -35,6 +36,18 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
+  } else if (error.name === 'MongoServerError' && error.code === 11000) {
+    const field = Object.keys(error.keyPattern)[0];
+    const value = Object.values(error.keyValue)[0];
+    const errors: IGenericErrorMessage[] = [
+      {
+        path: field,
+        message: `Duplicate key error. The value '${field}: ${value}' already exists.`,
+      },
+    ];
+    statusCode = httpStatus.BAD_REQUEST;
+    message = 'Duplicate key error.';
+    errorMessages = errors;
   } else if (error instanceof ApiError) {
     statusCode = error?.statusCode;
     message = error.message;

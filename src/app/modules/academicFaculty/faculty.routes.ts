@@ -11,6 +11,13 @@ router.post(
   facultyController.createFaculty
 );
 
-// router.get('/faculty' /* semesterController.getSingleSemester */);
+router.get('/faculties', facultyController.getAllFaculties);
+router.patch(
+  '/:id',
+  validateRequestZod(facultyValidation.createAndUpdateFacultyZodSchema),
+  facultyController.updateFaculty
+);
+router.get('/:id', facultyController.getSingleFaculty);
+router.delete('/:id', facultyController.deleteFaculty);
 
 export default router;

@@ -6,6 +6,7 @@ export interface IFaculty extends Document {
 
 export type FacultyModel = Model<IFaculty>;
 
-export interface IsearchParam {
-  search: string;
+export interface IFacultysearchAndFilters {
+  search?: string;
+  title?: string;
 }

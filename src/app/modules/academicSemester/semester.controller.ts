@@ -12,11 +12,6 @@ import { semesterSearchAndFiltersleFields } from './semester.constants';
 const createSemester = catchAsync(async (req: Request, res: Response) => {
   const semester = req.body;
   const result = await semesterService.createSemesterToDB(semester);
-  res.status(httpStatus.CREATED).json({
-    success: true,
-    message: 'User created successfully',
-    data: result,
-  });
   sendResponse<IAcademicSemester>(res, {
     statusCode: httpStatus.CREATED,
     success: true,
