@@ -9,6 +9,9 @@ const userSchema = new Schema<IUser>(
   },
   {
     timestamps: true, //this settings will create createdAt and updatedAt automatically by mongoose
+    toJSON: {
+      virtuals: true,
+    },
   }
 );
 
