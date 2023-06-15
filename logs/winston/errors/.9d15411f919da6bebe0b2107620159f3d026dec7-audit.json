@@ -99,6 +99,16 @@
             "date": 1686807182868,
             "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\errors\\phu-2023-15-06-11-error.log",
             "hash": "87e5f0c05a88fb80293aef42c334536b86e453f4c2d01b9874d78e83f9227aac"
+        },
+        {
+            "date": 1686809340875,
+            "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\errors\\phu-2023-15-06-12-error.log",
+            "hash": "f022c9c2f95b82eb99a66bc5ea77b1a46b0a7a4bf85edfb4e5f451ceafdf86c8"
+        },
+        {
+            "date": 1686812531522,
+            "name": "D:\\next-level-web-dev\\university-project\\um-server\\UM-Auth-service\\logs\\winston\\errors\\phu-2023-15-06-13-error.log",
+            "hash": "cbeb3e91d7628694423c1ae53cd2be9a456c1ef83cb8316993db815547c8a080"
         }
     ],
     "hashType": "sha256"
