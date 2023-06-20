@@ -1,6 +1,6 @@
 type conditionType = {
   $or?: { [field: string]: { $regex: string; $options: string } }[];
-  $and?: { [field: string]: string }[];
+  $and?: { [field: string]: string | { $regex: string; $options: string } }[];
 }[];
 
 interface returnType {
@@ -25,9 +25,20 @@ export const getSearchAndFiltersCondition = (
   }
   if (Object.keys(filters).length) {
     conditions.push({
-      $and: Object.entries(filters).map(([field, value]) => ({
-        [field]: value,
-      })),
+      $and: Object.entries(filters).map(([field, value]) => {
+        if (isNaN(Number(value)) || !Number.isInteger(Number(value))) {
+          return {
+            [field]: value,
+          };
+        } else {
+          return {
+            [field]: {
+              $regex: value,
+              $options: 'i',
+            },
+          };
+        }
+      }),
     });
   }
   return conditions.length > 0 ? { $and: conditions } : {};

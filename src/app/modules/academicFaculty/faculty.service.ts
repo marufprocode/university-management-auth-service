@@ -42,7 +42,10 @@ const getSingleFacultyFromDB = async (id: string): Promise<IFaculty | null> => {
 };
 
 const updateFacultyToDB = async (id: string, data: Partial<IFaculty>): Promise<IFaculty | null> => {
-  const result = await AcademicFaculty.findByIdAndUpdate(id, data, { new: true });
+  const result = await AcademicFaculty.findByIdAndUpdate(id, data, {
+    new: true,
+    runValidators: true,
+  });
   return result;
 };
 
