@@ -6,7 +6,7 @@ import sendResponse from '../../../shared/utilities/sendResponse';
 import { IUser } from './users.interface';
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
-  const { user } = req.body;
+  const user = req.body;
   const result = await usersService.createUserToDB(user);
   sendResponse<IUser>(res, {
     statusCode: httpStatus.CREATED,
